@@ -18,7 +18,9 @@ const routerReservations = require("./routes/reservations");
 const app = express();
 const PORT = process.env.PORT || process.env.LOCAL_PORT;
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173"
+}));
 app.use(express.json()); //* Parse JSON bodies (as sent by API Clients)
 
 // Routes

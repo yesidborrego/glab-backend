@@ -7,20 +7,21 @@ const authController = {
   login: async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
-      return res.status(400)
+      return res.status(403)
         .json({
           errors: errors.array()
         })
     }
     const { email, password } = req.body;
+
     const user = await User.findOne({
       where: { email },
       include: Role,
     })
     console.log(user)
     if(!user) {
-      return res.status(200).json({
-        status: 200,
+      return res.status(403).json({
+        status: 403,
         message: "User not found",
       })
     }
