@@ -19,14 +19,6 @@ const User = db.define("users", {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    document_type: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    document_number: {
-      type: DataTypes.BIGINT,
-      allowNull: false,
-    }
   },
   {
     scopes: {
@@ -50,7 +42,7 @@ const Role = db.define("roles", {
   },
 );
 
-User.belongsToMany(Role, { through: "roleusers" });
+User.hasOne(Role, { through: "roleusers" });
 Role.belongsToMany(User, { through: "roleusers" });
 
 module.exports = { User, Role };

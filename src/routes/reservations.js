@@ -5,8 +5,8 @@ const reservationsController = require("../controllers/reservations");
 const checkAuth = require("../middleware/checkAuth");
 
 router.get("/", checkAuth, reservationsController.getAllReservations);
-router.post("/", checkAuth, reservationsController.createUserAndReservation);
-router.put("/", checkAuth, reservationsController.updateDataUserAndReservation);
+router.post("/", reservationsController.createReservation);
+router.put("/", checkAuth, reservationsController.updateDataReservation);
 router.put("/change-state", checkAuth, reservationsController.changeStateOfAReservation);
 
 

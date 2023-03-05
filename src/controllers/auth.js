@@ -18,7 +18,6 @@ const authController = {
       where: { email },
       include: Role,
     })
-    console.log(user)
     if(!user) {
       return res.status(403).json({
         status: 403,
@@ -36,7 +35,6 @@ const authController = {
       }
 
       const { id, first_name, last_name, email } =  user;
-      const [ userRole ] = user.roles;
       const token = await JWT.sign({ email }, process.env.HASH_SALT);
       return res.status(200).json({
         status: 200,
@@ -45,10 +43,6 @@ const authController = {
           first_name,
           last_name,
           email,
-          role: {
-            id: userRole.id,
-            name: userRole.name,
-          }
         },
         token,
       });
