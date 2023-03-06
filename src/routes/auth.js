@@ -4,9 +4,8 @@ const router = express.Router();
 const authController = require("../controllers/auth");
 
 router.post("/login", [
-  check("email", "Please, provide a valid email").isEmail(),
-  check("password", "The password must contain at least 6 characters").isLength({ min: 6, max: 255 })
+  check("email").isEmail().withMessage("Please, provide a valid email").isEmail(),
+  check("password").isLength({ min: 6, max: 255 }).withMessage("The password must contain at least 6 characters"),
 ], authController.login);
-// router.post("/login", authController.login);
 
 module.exports = router;
