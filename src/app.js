@@ -16,17 +16,15 @@ const routerReservations = require("./routes/reservations");
 })();
 
 const app = express();
-const PORT = process.env.PORT || process.env.LOCAL_PORT;
+const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-  origin: "http://localhost:5173"
-}));
-app.use(express.json()); //* Parse JSON bodies (as sent by API Clients)
+app.use(cors());
+app.use(express.json());
 
 // Routes
 app.use("/auth", routerAuth);
 app.use("/reservations", routerReservations);
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log("Server running");
 });
